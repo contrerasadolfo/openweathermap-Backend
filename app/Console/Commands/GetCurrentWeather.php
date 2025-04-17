@@ -21,6 +21,8 @@ class GetCurrentWeather extends Command
             return;
         }
 
+        \Log::info($matches);
+
         [$_, $city, $country] = $matches;
 
         $baseUrl = app()->runningInConsole()

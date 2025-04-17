@@ -43,8 +43,8 @@ units     (opcional)  : 'imperial' (°F) o 'metric' (°C)</code></pre>
 
             <p>
                 🔗 <strong>Probar en el navegador:</strong><br>
-                <a href="{{ config('app.url') }}/api/weather/current?city=Madrid&country=ES" target="_blank">
-                    {{ config('app.url') }}/api/weather/current?city=Madrid&country=ES&units=metric
+                <a href="{{ request()->getSchemeAndHttpHost() }}/api/weather/current?city=Madrid&country=ES" target="_blank">
+                    {{ request()->getSchemeAndHttpHost() }}/api/weather/current?city=Madrid&country=ES&units=metric
                 </a>
             </p>
 
@@ -108,9 +108,9 @@ units     (opcional)  : 'imperial' (°F) o 'metric' (°C)</code></pre>
 
             <p>
                 🔗 <strong>Probar en el navegador:</strong><br>
-                <a href="{{ config('app.url') }}/api/weather/forecast?city=Madrid&country=ES&days=5&units=metric"
+                <a href="{{ request()->getSchemeAndHttpHost() }}/api/weather/forecast?city=Madrid&country=ES&days=5&units=metric"
                     target="_blank">
-                    {{ config('app.url') }}/api/weather/forecast?city=Madrid&country=ES&days=5&units=metric
+                    {{ request()->getSchemeAndHttpHost() }}/api/weather/forecast?city=Madrid&country=ES&days=5&units=metric
                 </a>
             </p>
 
