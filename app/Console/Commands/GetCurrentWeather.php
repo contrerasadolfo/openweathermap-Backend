@@ -21,12 +21,13 @@ class GetCurrentWeather extends Command
             return;
         }
 
-        \Log::info($matches);
-
         [$_, $city, $country] = $matches;
 
+        //detectar automáticamente el dominio y puerto
+        $port = $_SERVER['SERVER_PORT'] ?? '8000';
+
         $baseUrl = app()->runningInConsole()
-            ? config('app.url')
+            ? config('app.url') . ":" . $port
             : request()->getSchemeAndHttpHost(); // detecta automáticamente el dominio
 
         $url = $baseUrl . '/api/weather/current';
