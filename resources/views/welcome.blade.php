@@ -57,6 +57,29 @@ units     (opcional)  : 'imperial' (°F) o 'metric' (°C)</code></pre>
     "temperature": "68.4°F"
 }</code></pre>
             </div>
+            <p><strong>⚠️ Errores</strong></p>
+            <p><strong>422: Error de validación de parámetros.</strong></p>
+            <div class="card bg-light p-3">
+    <pre><code>{
+    "message": "Error de validación.",
+    "errors": {
+        "city": [
+            "The city field is required."
+        ],
+        "country": [
+            "The country field is required."
+        ]
+    }
+}</code></pre>
+</div>
+<br>
+<p><strong>404: Ciudad o país no encontrados.</strong></p>
+<div class="card bg-light p-3">
+    <pre><code>{
+    "error": "No se pudo obtener el clima para la ubicación especificada."
+        }</code></pre>
+</div>
+
         </section>
 
         {{-- Previsión --}}

@@ -1,3 +1,19 @@
+🌤️ OpenWeatherMap API Laravel
+
+Proyecto Laravel para consultar el clima actual y la previsión meteorológica utilizando la API de [OpenWeatherMap](https://openweathermap.org/api).
+
+---
+
+## 🚀 Requisitos
+
+- PHP >= 8.2
+- Composer
+- Laravel 12
+- MySQL
+- Laravel instalado globalmente (`laravel`)
+- Opcional: Laragon, XAMPP, WAMP u otro entorno local
+
+
 Pasos para ejecutar un proyecto Laravel localmente
 
 🔽 Clonar o copiar el proyecto
@@ -62,3 +78,12 @@ http://127.0.0.1:8000/api/weather/current?city=Madrid&country=ES
 
 Previsión del clima:
 http://127.0.0.1:8000/api/weather/forecast?city=Madrid&country=ES&days=3
+
+
+🧪 Comandos Artisan
+Puedes ejecutar los siguientes comandos para obtener información desde consola:
+
+Clima actual: php artisan current HavanaCU --units=imperial
+
+Previsión meteorológica: php artisan forecast MadridES --days=5 --units=metric
+

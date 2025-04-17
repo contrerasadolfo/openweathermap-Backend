@@ -10,10 +10,18 @@ class WeatherController extends Controller
 {
     public function current(Request $request)
     {
-        $request->validate([
-            'city' => 'required|string',
-            'country' => 'required|string|size:2',
-        ]);
+        try {
+            $request->validate([
+                'city' => 'required|string',
+                'country' => 'required|string|size:2',
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json([
+                'message' => 'Error de validación.',
+                'errors' => $e->errors(),
+            ], 422);
+        }
+
 
         $city = $request->input('city');
         $country = strtoupper($request->input('country'));
@@ -25,7 +33,7 @@ class WeatherController extends Controller
             'q' => "$city,$country",
             'appid' => $apiKey,
             'units' => $units,
-            'lang' => 'es',
+            // 'lang' => 'es',
         ]);
 
         if ($response->failed()) {
@@ -80,7 +88,7 @@ class WeatherController extends Controller
             'q' => "$city,$country",
             'appid' => $apiKey,
             'units' => $units,
-            'lang' => 'es',
+            // 'lang' => 'es',
         ]);
 
         if ($response->failed()) {
@@ -93,14 +101,14 @@ class WeatherController extends Controller
         // Agrupar por día y tomar la media de temperatura + el primer estado del clima
         $groupedForecast = collect($data['list'])
             ->groupBy(function ($item) {
-                return \Carbon\Carbon::parse($item['dt_txt'])->format('Y-m-d');
+                return Carbon::parse($item['dt_txt'])->format('Y-m-d');
             })
             ->take($days)
             ->map(function ($dayItems) use ($units) {
                 $dayData = $dayItems->first(); // Tomamos el primer bloque del día como ejemplo
                 $avgTemp = $dayItems->avg('main.temp');
                 return [
-                    'date' => \Carbon\Carbon::parse($dayData['dt_txt'])->format('M d Y'),
+                    'date' => Carbon::parse($dayData['dt_txt'])->format('M d Y'),
                     'weather' => $dayData['weather'][0]['description'],
                     'temperature' => round($avgTemp, 2) . ($units === 'metric' ? '°C' : '°F'),
                 ];
